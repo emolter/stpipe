@@ -448,7 +448,7 @@ class SimpleDataModel(AbstractDataModel):
     def save(self, path, dir_path=None, *args, **kwargs):
         saveid = getattr(self, "saveid", None)
         if saveid is not None:
-            fname = saveid+"-saved.txt"
+            fname = saveid + "-saved.txt"
             with open(fname, "w") as f:
                 f.write(f"{path}")
             return fname
@@ -525,7 +525,9 @@ class SimpleContainerWithSave(SimpleContainer):
             model.save(path, dir_path, *args, **kwargs)
 
 
-@pytest.mark.xfail(reason="Looping over models only works for list and tuple. This should be fixed.")
+@pytest.mark.xfail(
+    reason="Looping over models only works for list and tuple. This should be fixed."
+)
 def test_save_container(tmp_cwd, model_list):
     """ensure list-like save still works for non-list sequence"""
     container = SimpleContainer(model_list)
